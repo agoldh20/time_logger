@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #Time Log Routes
-  get '/' => 'time_logs#index'
+  get '/' => 'time_logs#show'
 
   get '/time_logs/new' => 'time_logs#new'
   post '/time_logs/' => 'time_logs#create'

@@ -9,13 +9,14 @@ class TimeLogsController < ApplicationController
 
   def create
     current_sprint = Sprint.find_by(current: true)
+    ticket = "#{params[:valo_type]}-#{params[:ticket_number]}"
 
     @time_log = TimeLog.create({
-      ticket: params[:ticket],
+      ticket: ticket,
       action: params[:action],
       notes: params[:notes],
       currently_active_task: true,
-      sprint_id: current_sprint.id
+      sprint_id: current_sprint.id,
       sprint: current_sprint.sprint
     })
 
@@ -24,7 +25,13 @@ class TimeLogsController < ApplicationController
   end
 
   def show
-    @time_log = TimeLog.find(params[:id])
+    current_ticket = TimeLog.find_by(currently_active_task: true)
+
+    if current_ticket
+      @time_log = current_ticket
+    else
+      render "new.html.erb"
+    end
   end
 
   def edit
@@ -38,7 +45,7 @@ class TimeLogsController < ApplicationController
       ticket: params[:ticket],
       action: params[:action],
       notes: params[:notes],
-      start_time: params[:start_time]
+      start_time: params[:start_time],
       end_time: params[:end_time]
     })
   end

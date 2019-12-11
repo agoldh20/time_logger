@@ -1,2 +1,17 @@
 <%= form_tag '/time_logs', method: :post do %>
+  <select name="valo_type">
+    <option value="VP">VP</option>
+    <option value="MDM">MDM</option>
+    <option value="WF">WF</option>
+  </select>
+  <input type="text" name="ticket_number" placeholder="Ticket Number">
+  <select name="action">
+    <option value="Driving">Driving</option>
+    <option value="Navagating">Navagating</option>
+    <option value="Code Review">Code Review</option>
+    <option value="Testing">Testing</option>
+    <option value="Other">Other</option>
+  </select>
+  <input type="text" name="notes" placeholder="">
+  <input type="submit" value="Start">
 <% end %>
