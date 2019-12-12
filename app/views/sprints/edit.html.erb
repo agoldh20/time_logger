@@ -1,1 +1,8 @@
-edit.html.erb
+<%= form_tag "/sprints/#{@sprint.id}", method: :patch do %>
+  <input type="text" name="sprint" value="<%= @sprint.sprint %>" placeholder="Sprint Number">
+  <select name="current">
+    <option value="true" <%= 'selected="selected' if @sprint.current == true %>>True</option>
+    <option value="false" <%= 'selected="selected' if @sprint.current == false %>>False</option>
+  </select>
+  <input type="submit" value="Update">
+<% end %>

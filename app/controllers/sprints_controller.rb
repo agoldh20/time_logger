@@ -16,6 +16,8 @@ class SprintsController < ApplicationController
       sprint_number: params[:sprint_number]
       current: true
     })
+
+    render "index.html.erb"
   end
 
   def show
@@ -33,6 +35,8 @@ class SprintsController < ApplicationController
       sprint_number: params[:sprint_number]
       current: params[:current]
     })
+
+    sprint.save
   end
 
   def destroy

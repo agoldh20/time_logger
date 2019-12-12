@@ -1,1 +1,4 @@
-new.html.erb
+<%= form_tag '/sprints', method: :post do %>
+  <input type="text" name="sprint" placeholder="Sprint Number">
+  <input type="submit" value="Submit">
+<% end %>
