@@ -1,4 +1,6 @@
 class TimeLogsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @time_logs = TimeLog.all
   end

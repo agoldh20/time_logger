@@ -1,4 +1,6 @@
 class SprintsController < ApplicationController
+  before_action :authenticate_admin!
+  
   def index
     @sprints = Sprint.all
   end
