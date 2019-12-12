@@ -1,1 +1,16 @@
-edit.html.erb
+<%= form_tag "/time_logs/#{@time_log.id}", method: :patch do %>
+  <input type="text" name="ticket_number" value="<%= @time_log.ticket %>" placeholder="Ticket">
+  <select name="my_action">
+    <option value="Driving" <%= 'selected="selected' if @time_log.my_action == "Driving" %>>Driving</option>
+    <option value="Navagating" <%= 'selected="selected' if @time_log.my_action == "Navagating" %>>Navagating</option>
+    <option value="Code Review" <%= 'selected="selected' if @time_log.my_action == "Code Review" %>>Code Review</option>
+    <option value="Testing" <%= 'selected="selected' if @time_log.my_action == "Testing" %>>Testing</option>
+    <option value="Other" <%= 'selected="selected' if @time_log.my_action == "Other" %>>Other</option>
+  </select>
+  <input type="text" name="notes" value="<%= @time_log.notes %>" placeholder="Notes">
+  <select name="currently_active_task">
+    <option value="true" <%= 'selected="selected"' if @time_log.currently_active_task == true %>>True</option>
+    <option value="false" <%= 'selected="selected"' if @time_log.currently_active_task == false %>>False</option>
+  </select>
+  <input type="submit" value="Update">
+<% end %>
