@@ -11,17 +11,21 @@ class TimeLogsController < ApplicationController
     current_sprint = Sprint.find_by(current: true)
     ticket = "#{params[:valo_type]}-#{params[:ticket_number]}"
 
-    @time_log = TimeLog.create({
+    TimeLog.create(
       ticket: ticket,
-      action: params[:action],
+      my_action: params[:my_action],
       notes: params[:notes],
       currently_active_task: true,
       sprint_id: current_sprint.id,
-      sprint: current_sprint.sprint
-    })
+      sprint_number: current_sprint.sprint
+    )
 
-    @time_log.start_time = @time_log.created_at.strftime("%m/%d/%y %I:%M%p")
+    @time_log = TimeLog.last
+
+    @time_log.start_time = @time_log.created_at.in_time_zone("America/Chicago").strftime("%m/%d/%y %I:%M%p")
     @time_log.save
+
+    redirect_to "/time_logs/#{@time_log.id}"
   end
 
   def show
@@ -41,13 +45,16 @@ class TimeLogsController < ApplicationController
   def update
     time_log = TimeLog.find(params[:id])
 
-    time_log.assign_attributes({
+    time_log.assign_attributes(
       ticket: params[:ticket],
-      action: params[:action],
+      my_action: params[:my_action],
       notes: params[:notes],
       start_time: params[:start_time],
-      end_time: params[:end_time]
-    })
+      end_time: params[:end_time],
+      currently_active_task: params[:currently_active_task]
+    )
+
+    time_log.save
   end
 
   def destroy

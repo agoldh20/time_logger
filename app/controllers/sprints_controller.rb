@@ -13,7 +13,7 @@ class SprintsController < ApplicationController
     })
 
     Sprint.create({
-      sprint: params[:sprint]
+      sprint_number: params[:sprint_number]
       current: true
     })
   end
@@ -29,9 +29,9 @@ class SprintsController < ApplicationController
   def update
     sprint = Sprint.find(params[:id])
 
-    Sprint.assign_attributes({
-      sprint: params[:sprint]
-      current: true
+    sprint.assign_attributes({
+      sprint_number: params[:sprint_number]
+      current: params[:current]
     })
   end
 
