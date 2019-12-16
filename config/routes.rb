@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #Time Log Routes
-  get '/time_logs/index' => 'time_logs#index'
+  get '/time_logs/all' => 'time_logs#index'
 
   get '/time_logs/new' => 'time_logs#new'
   post '/time_logs/' => 'time_logs#create'
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   patch '/time_logs/:id/end' => 'time_logs#end_task'
   #================================================
   #Sprint Routes
-  get '/' => 'sprints#index'
+  get '/sprints/all' => 'sprints#index'
 
   get '/sprints/new' => 'sprints#new'
   post '/sprints/' => 'sprints#create'

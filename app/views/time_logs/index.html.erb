@@ -3,11 +3,11 @@
     <% @time_logs.each do |time_log| %>
       <%= form_tag "/time_logs/#{time_log.id}/end", method: :patch do %>
         <li>
-          <%= time_log.sprint_number %>
-          <%= time_log.ticket %>
-          <%= time_log.my_action %>
+          Sprint <%= time_log.sprint_number %>,
+          <%= time_log.ticket %>,
+          <%= time_log.my_action %>,
           <%= time_log.start_time %> -
-          <%= time_log.end_time %>
+          <%= time_log.end_time %>,
           <%= time_log.notes %>
           <% if time_log.currently_active_task %>
               <input type="submit" value="End">
